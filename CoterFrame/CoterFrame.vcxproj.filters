@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="CoterFrame">
+      <UniqueIdentifier>{8d120d16-a3dd-4676-a6d2-db28e0f58c98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CoterFrame\Network">
+      <UniqueIdentifier>{6522a7cb-60b6-49cb-b35b-b4a78537b4a9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CFMacro.h">
+      <Filter>CoterFrame</Filter>
+    </ClInclude>
+    <ClInclude Include="CFPlatform.h">
+      <Filter>CoterFrame</Filter>
+    </ClInclude>
+    <ClInclude Include="CFPrecompiled.h">
+      <Filter>CoterFrame</Filter>
+    </ClInclude>
+    <ClInclude Include="CFSingleton.hpp">
+      <Filter>CoterFrame</Filter>
+    </ClInclude>
+    <ClInclude Include="CFSharePtr.hpp">
+      <Filter>CoterFrame</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\CFDNS.h">
+      <Filter>CoterFrame\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\CFNetAddr.h">
+      <Filter>CoterFrame\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\CFNetAddrInfo.h">
+      <Filter>CoterFrame\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\CFNetClient.h">
+      <Filter>CoterFrame\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\CFNetMessage.h">
+      <Filter>CoterFrame\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\CFNetObject.h">
+      <Filter>CoterFrame\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\CFNetServer.h">
+      <Filter>CoterFrame\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\CFNetwork.h">
+      <Filter>CoterFrame\Network</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CFPrecompiled.cpp">
+      <Filter>CoterFrame</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\CFDNS.cpp">
+      <Filter>CoterFrame\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\CFNetAddr.cpp">
+      <Filter>CoterFrame\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\CFNetAddrInfo.cpp">
+      <Filter>CoterFrame\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\CFNetClient.cpp">
+      <Filter>CoterFrame\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\CFNetMessage.cpp">
+      <Filter>CoterFrame\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\CFNetObject.cpp">
+      <Filter>CoterFrame\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\CFNetServer.cpp">
+      <Filter>CoterFrame\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\CFNetwork.cpp">
+      <Filter>CoterFrame\Network</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
