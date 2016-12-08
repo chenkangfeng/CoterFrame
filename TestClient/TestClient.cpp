@@ -4,6 +4,8 @@
 #include "stdafx.h"
 #include "Network/CFDNS.h"
 #include "Network/CFNetClient.h"
+#include <thread>
+#include <list>
 
 NS_CF_USING
 
@@ -16,8 +18,32 @@ int _tmain(int argc, _TCHAR* argv[])
     printf("%s\n", addrInfo[0].getIp().c_str());
     addr.setPort(1234);
 
-    CFNetClient client;
-    client.initClient(addr);
+    std::list<CFNetObject::SharePtr> listObject;
+
+    std::thread threadPool[500];
+
+    for (int i = 0; i < 500; ++i) {
+        threadPool[i] = std::thread([&](const CFNetAddr& addr){
+            CFNetClient client;
+            client.setConnector([&](CFNetObject::SharePtr&& netObject){
+                printf("connect\n");
+                listObject.push_back(netObject);
+                netObject->setReader([&](CFNetMessage&& message){
+                    printf("recv %s\n", message.getMessage().c_str());
+                });
+                netObject->sendMessage("hello world!");
+            });
+            client.startClient(addr);
+            while (true) {
+                client.mainLoop();
+                Sleep(100);
+            }
+
+        }, addr);
+    }
+    for (int i = 0; i < 500; ++i){
+        threadPool[i].join();
+    }
 
 	return 0;
 }

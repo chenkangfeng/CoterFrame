@@ -10,11 +10,19 @@ CFNetServer::CFNetServer(CFInt32 cpus) :
 _listener(nullptr),
 _acceptor(nullptr)
 {
-    struct event_config* config = event_config_new();
-#if CF_PLATFORM(CF_PLATFORM_WIN)
-    WSADATA wsaData;
-    WSAStartup(0x0201, &wsaData);
+    _isUseThread = true;
 
+    struct event_config* config = event_config_new();
+#if CF_PLATFORM(CF_WIN)
+    WSADATA wsaData;
+    WSAStartup(MAKEWORD(2, 2), &wsaData);
+
+    if (nullptr != config) {
+        if (evthread_use_windows_threads() < 0) {
+            event_config_free(config);
+            config = nullptr;
+        }
+    }
     if (nullptr != config) {
         if (event_config_set_flag(config, EVENT_BASE_FLAG_STARTUP_IOCP) < 0) {
             event_config_free(config);
@@ -22,6 +30,12 @@ _acceptor(nullptr)
         }
     }
 #else
+    if (nullptr != config) {
+        if (evthread_use_pthreads() < 0) {
+            event_config_free(config);
+            config = nullptr;
+        }
+    }
     if (nullptr != config) {
         if (event_config_set_flag(config, EVENT_BASE_FLAG_EPOLL_USE_CHANGELIST) < 0) {
             event_config_free(config);
@@ -49,16 +63,19 @@ CFNetServer::~CFNetServer(void)
     }
 }
 
-CFBool CFNetServer::initServer(const CFNetAddr& addr)
+void CFNetServer::setAcceptor(const CFNetAcceptor& acceptor)
 {
-    printf("thread id %p\n", std::this_thread::get_id());
+    _acceptor = acceptor;
+}
 
+CFBool CFNetServer::startServer(const CFNetAddr& addr)
+{
     CFBool ret = false;
     if (!_isRunning && nullptr != _base) {
         _isRunning = true;
 
         _listener = evconnlistener_new_bind(_base, _onAccept, this,
-            LEV_OPT_REUSEABLE | LEV_OPT_CLOSE_ON_FREE, -1,
+            LEV_OPT_THREADSAFE | LEV_OPT_REUSEABLE | LEV_OPT_CLOSE_ON_FREE, -1,
             &addr.getSockAddr().addr, addr.getSockLen());
         if (nullptr == _listener) {
             _closeNetwork();
@@ -71,22 +88,16 @@ CFBool CFNetServer::initServer(const CFNetAddr& addr)
     return ret;
 }
 
-void CFNetServer::setAcceptor(const CFNetAcceptor& acceptor)
-{
-    _acceptor = acceptor;
-}
-
 void CFNetServer::_onAccept(struct evconnlistener* listener, evutil_socket_t fd,
-struct sockaddr* addr, CFInt32 sockLen, void* data)
+    struct sockaddr* addr, CFInt32 sockLen, void* data)
 {
-    printf("thread id %p\n", std::this_thread::get_id());
     CFNetServer* netServer = static_cast<CFNetServer*>(data);
     if (nullptr != netServer) {
         struct event_base* base = netServer->_base;
         if (nullptr != base) {
-            struct bufferevent* bev = bufferevent_socket_new(base, fd, BEV_OPT_CLOSE_ON_FREE);
+            struct bufferevent* bev = bufferevent_socket_new(base, fd, LEV_OPT_THREADSAFE | BEV_OPT_CLOSE_ON_FREE);
             if (nullptr != bev) {
-
+                netServer->_doAccept(fd, addr, bev);
             }
         }
     }
@@ -95,8 +106,8 @@ struct sockaddr* addr, CFInt32 sockLen, void* data)
 void CFNetServer::_doAccept(evutil_socket_t fd, const CFNetAddr& addr, struct bufferevent* bev)
 {
     if (_acceptor) {
-        CFNetObject::SharePtr netObject(new CFNetObject(this, fd, addr, bev));
-        _acceptor(netObject);
+        CFNetObject::SharePtr netObject(new CF_NOTHROW CFNetObject(this, fd, addr, bev));
+        _acceptor(std::move(netObject));
     }
 }
 

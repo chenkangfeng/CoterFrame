@@ -35,7 +35,15 @@ if (nullptr != Data) { \
     Data = nullptr; \
 }
 
+#define CF_SAFA_DELETE_ARRAY(Array) \
+if (nullptr != Array) { \
+    delete[] Array; \
+    Array = nullptr; \
+}
+
 #include <assert.h>
 #define CF_ASSERT(Condition) assert(Condition)
+
+#define CF_NOTHROW (std::nothrow)
 
 #endif // CF_MACRO_H

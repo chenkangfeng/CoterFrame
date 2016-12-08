@@ -6,7 +6,7 @@
 
 NS_CF_BEGIN
 
-enum class SingletonType {Lazy, Fast};
+enum class SingletonType { Lazy, Fast };
 
 template <typename T, SingletonType type = SingletonType::Lazy>
 class Singleton {};
@@ -21,7 +21,7 @@ public:
     virtual ~Singleton(void) {}
 
     static T* getInstance(void) {
-        return nullptr == _instance ? new T() : _instance;
+        return nullptr == _instance ? new CF_NOTHROW T() : _instance;
     }
     static void releaseInstance(void) {
         CF_SAFE_DELETE(_instance);
@@ -51,7 +51,7 @@ private:
 };
 
 template <typename T>
-T* Singleton<T, SingletonType::Fast>::_instance = new T();
+T* Singleton<T, SingletonType::Fast>::_instance = new CF_NOTHROW T();
 
 NS_CF_END
 

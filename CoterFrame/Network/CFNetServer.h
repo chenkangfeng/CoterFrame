@@ -11,15 +11,15 @@
 
 NS_CF_BEGIN
 
-typedef std::function<void(CFNetObject::SharePtr)> CFNetAcceptor;
+typedef std::function<void(CFNetObject::SharePtr&&)> CFNetAcceptor;
 class CFNetServer : public CFNetwork
 {
 public:
     CFNetServer(CFInt32 cpus);
     virtual ~CFNetServer(void);
 
-    CFBool initServer(const CFNetAddr& addr);
     void setAcceptor(const CFNetAcceptor& acceptor);
+    CFBool startServer(const CFNetAddr& addr);
 private:
     static void _onAccept(struct evconnlistener* listener, evutil_socket_t fd,
         struct sockaddr* addr, CFInt32 sockLen, void* data);

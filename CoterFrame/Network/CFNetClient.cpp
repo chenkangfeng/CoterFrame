@@ -8,9 +8,9 @@ NS_CF_BEGIN
 CFNetClient::CFNetClient(void) :
 _connector(nullptr)
 {
-#ifdef CF_PLATFORM(CF_PLATFORM_WIN)
+#ifdef CF_PLATFORM(CF_WIN)
     WSADATA wsaData;
-    WSAStartup(0x0201, &wsaData);
+    WSAStartup(MAKEWORD(2, 2), &wsaData);
 #endif
     _base = event_base_new();
 }
@@ -19,7 +19,12 @@ CFNetClient::~CFNetClient(void)
 {
 }
 
-CFBool CFNetClient::initClient(const CFNetAddr& addr)
+void CFNetClient::setConnector(const CFNetConnector& connector)
+{
+    _connector = connector;
+}
+
+CFBool CFNetClient::startClient(const CFNetAddr& addr)
 {
     CFBool ret = false;
     if (!_isRunning && nullptr != _base) {
@@ -39,6 +44,7 @@ CFBool CFNetClient::initClient(const CFNetAddr& addr)
             }
             else {
                 evutil_socket_t fd = bufferevent_getfd(bev);
+                bufferevent_enable(bev, EV_READ | EV_WRITE);
                 _doConnect(fd, addr, bev);
                 ret = true;
             }
@@ -48,16 +54,11 @@ CFBool CFNetClient::initClient(const CFNetAddr& addr)
     return ret;
 }
 
-void CFNetClient::setConnector(const CFNetConnector& connector)
-{
-    _connector = connector;
-}
-
 void CFNetClient::_doConnect(evutil_socket_t fd, const CFNetAddr& addr, struct bufferevent* bev)
 {
     if (_connector) {
-        CFNetObject::SharePtr netObject(new CFNetObject(this, fd, addr, bev));
-        _connector(netObject);
+        CFNetObject::SharePtr netObject(new CF_NOTHROW CFNetObject(this, fd, addr, bev));
+        _connector(std::move(netObject));
     }
 }
 

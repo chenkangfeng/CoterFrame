@@ -6,6 +6,7 @@ NS_CF_BEGIN
 
 CFNetwork::CFNetwork(void) :
 _isRunning(false),
+_isUseThread(false),
 _base(nullptr)
 {
 }
@@ -15,9 +16,9 @@ CFNetwork::~CFNetwork(void)
     _closeNetwork();
 }
 
-event_base* CFNetwork::getEventBase(void)
+CFBool CFNetwork::isUseThread(void)
 {
-    return _base;
+    return _isUseThread;
 }
 
 void CFNetwork::mainLoop(void)

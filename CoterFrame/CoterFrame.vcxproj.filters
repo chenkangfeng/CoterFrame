@@ -55,6 +55,9 @@
     <ClInclude Include="Network\CFNetwork.h">
       <Filter>CoterFrame\Network</Filter>
     </ClInclude>
+    <ClInclude Include="Network\CFNetLock.h">
+      <Filter>CoterFrame\Network</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CFPrecompiled.cpp">
@@ -82,6 +85,9 @@
       <Filter>CoterFrame\Network</Filter>
     </ClCompile>
     <ClCompile Include="Network\CFNetwork.cpp">
+      <Filter>CoterFrame\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\CFNetLock.cpp">
       <Filter>CoterFrame\Network</Filter>
     </ClCompile>
   </ItemGroup>
