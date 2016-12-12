@@ -85,10 +85,12 @@
     <ClInclude Include="Network\CFDNS.h" />
     <ClInclude Include="Network\CFNetAddr.h" />
     <ClInclude Include="Network\CFNetAddrInfo.h" />
+    <ClInclude Include="Network\CFNetBuffer.h" />
     <ClInclude Include="Network\CFNetClient.h" />
     <ClInclude Include="Network\CFNetLock.h" />
     <ClInclude Include="Network\CFNetMessage.h" />
     <ClInclude Include="Network\CFNetObject.h" />
+    <ClInclude Include="Network\CFNetPack.h" />
     <ClInclude Include="Network\CFNetServer.h" />
     <ClInclude Include="Network\CFNetwork.h" />
   </ItemGroup>
@@ -97,10 +99,12 @@
     <ClCompile Include="Network\CFDNS.cpp" />
     <ClCompile Include="Network\CFNetAddr.cpp" />
     <ClCompile Include="Network\CFNetAddrInfo.cpp" />
+    <ClCompile Include="Network\CFNetBuffer.cpp" />
     <ClCompile Include="Network\CFNetClient.cpp" />
     <ClCompile Include="Network\CFNetLock.cpp" />
     <ClCompile Include="Network\CFNetMessage.cpp" />
     <ClCompile Include="Network\CFNetObject.cpp" />
+    <ClCompile Include="Network\CFNetPack.cpp" />
     <ClCompile Include="Network\CFNetServer.cpp" />
     <ClCompile Include="Network\CFNetwork.cpp" />
   </ItemGroup>

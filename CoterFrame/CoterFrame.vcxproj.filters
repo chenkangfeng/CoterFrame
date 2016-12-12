@@ -58,6 +58,12 @@
     <ClInclude Include="Network\CFNetLock.h">
       <Filter>CoterFrame\Network</Filter>
     </ClInclude>
+    <ClInclude Include="Network\CFNetBuffer.h">
+      <Filter>CoterFrame\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\CFNetPack.h">
+      <Filter>CoterFrame\Network</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CFPrecompiled.cpp">
@@ -88,6 +94,12 @@
       <Filter>CoterFrame\Network</Filter>
     </ClCompile>
     <ClCompile Include="Network\CFNetLock.cpp">
+      <Filter>CoterFrame\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\CFNetBuffer.cpp">
+      <Filter>CoterFrame\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\CFNetPack.cpp">
       <Filter>CoterFrame\Network</Filter>
     </ClCompile>
   </ItemGroup>
