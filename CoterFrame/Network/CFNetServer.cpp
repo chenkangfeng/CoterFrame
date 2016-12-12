@@ -2,7 +2,6 @@
 #include "CFPrecompiled.h"
 #include "CFNetServer.h"
 #include "event2/thread.h"
-#include <thread>
 
 NS_CF_BEGIN
 
@@ -10,49 +9,51 @@ CFNetServer::CFNetServer(CFInt32 cpus) :
 _listener(nullptr),
 _acceptor(nullptr)
 {
-    _isUseThread = true;
-
     struct event_config* config = event_config_new();
 #if CF_PLATFORM(CF_WIN)
     WSADATA wsaData;
-    WSAStartup(MAKEWORD(2, 2), &wsaData);
-
+    if (0 != WSAStartup(MAKEWORD(2, 2), &wsaData)) {
+        event_config_free(config);
+        config = nullptr;
+    }
     if (nullptr != config) {
-        if (evthread_use_windows_threads() < 0) {
+        if (0 != evthread_use_windows_threads()) {
             event_config_free(config);
             config = nullptr;
         }
     }
     if (nullptr != config) {
-        if (event_config_set_flag(config, EVENT_BASE_FLAG_STARTUP_IOCP) < 0) {
+        if (0 != event_config_set_flag(config, EVENT_BASE_FLAG_STARTUP_IOCP)) {
             event_config_free(config);
             config = nullptr;
         }
     }
 #else
     if (nullptr != config) {
-        if (evthread_use_pthreads() < 0) {
+        if (0 != evthread_use_pthreads()) {
             event_config_free(config);
             config = nullptr;
         }
     }
     if (nullptr != config) {
-        if (event_config_set_flag(config, EVENT_BASE_FLAG_EPOLL_USE_CHANGELIST) < 0) {
+        if (0 != event_config_set_flag(config, EVENT_BASE_FLAG_EPOLL_USE_CHANGELIST)) {
             event_config_free(config);
             config = nullptr;
         }
     }
 #endif
     if (nullptr != config) {
-        if (event_config_set_num_cpus_hint(config, cpus)) {
+        if (0 != event_config_set_num_cpus_hint(config, cpus)) {
             event_config_free(config);
             config = nullptr;
         }
     }
-
     if (nullptr != config) {
         _base = event_base_new_with_config(config);
         event_config_free(config);
+        if (nullptr != _base) {
+            _isMultiThread = true;
+        }
     }
 }
 
@@ -76,7 +77,7 @@ CFBool CFNetServer::startServer(const CFNetAddr& addr)
 
         _listener = evconnlistener_new_bind(_base, _onAccept, this,
             LEV_OPT_THREADSAFE | LEV_OPT_REUSEABLE | LEV_OPT_CLOSE_ON_FREE, -1,
-            &addr.getSockAddr().addr, addr.getSockLen());
+            &addr.addr(), addr.length());
         if (nullptr == _listener) {
             _closeNetwork();
         }

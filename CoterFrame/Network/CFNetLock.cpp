@@ -4,10 +4,9 @@
 
 NS_CF_BEGIN
 
-CFNetLock::CFNetLock(CFBool isEnable) :
-_isEnable(isEnable)
+CFNetLock::CFNetLock(void)
 {
-    lock();
+    unlock();
 }
 
 CFNetLock::~CFNetLock(void)
@@ -17,16 +16,12 @@ CFNetLock::~CFNetLock(void)
 
 void CFNetLock::lock(void)
 {
-    if (_isEnable) {
-        while (_flag.test_and_set()) {}
-    }
+    while (_flag.test_and_set());
 }
 
 void CFNetLock::unlock(void)
 {
-    if (_isEnable) {
-        _flag.clear();
-    }
+    _flag.clear();
 }
 
 CFNetLock::CFNetLock(const CFNetLock&)

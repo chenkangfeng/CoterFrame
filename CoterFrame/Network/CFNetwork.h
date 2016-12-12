@@ -13,14 +13,14 @@ public:
     CFNetwork(void);
     virtual ~CFNetwork(void);
 
-    CFBool isUseThread(void);
+    CFBool isMultiThread(void);
 
     virtual void mainLoop(void);
 protected:
     virtual void _closeNetwork(void);
 
     CFBool _isRunning;
-    CFBool _isUseThread;
+    CFBool _isMultiThread;
     struct event_base* _base;
 };
 

@@ -10,7 +10,7 @@ NS_CF_BEGIN
 class CFNetLock
 {
 public:
-    explicit CFNetLock(CFBool isEnable);
+    explicit CFNetLock(void);
     ~CFNetLock(void);
 
     void lock(void);

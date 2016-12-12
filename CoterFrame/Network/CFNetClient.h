@@ -10,8 +10,6 @@
 
 NS_CF_BEGIN
 
-class CFNetObject;
-
 typedef std::function<void(CFNetObject::SharePtr&&)> CFNetConnector;
 class CFNetClient : public CFNetwork
 {
@@ -22,8 +20,11 @@ public:
     void setConnector(const CFNetConnector& connector);
     CFBool startClient(const CFNetAddr& addr);
 private:
-    void _doConnect(evutil_socket_t fd, const CFNetAddr& addr, struct bufferevent* bev);
+    static void _onConnect(struct bufferevent* bev, CFInt16 events, void* data);
 
+    void _doConnect(struct bufferevent* bev);
+
+    CFNetAddr _addr;
     CFNetConnector _connector;
 };
 

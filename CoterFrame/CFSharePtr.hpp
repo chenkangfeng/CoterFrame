@@ -7,7 +7,7 @@
 
 NS_CF_BEGIN
 
-template <typename T, bool isEnableSharedFromThis = false>
+template <typename T, CFBool isEnableSharedFromThis = false>
 class CFSharePtr {};
 
 template <typename T>

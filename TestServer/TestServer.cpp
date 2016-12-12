@@ -14,13 +14,13 @@ int _tmain(int argc, _TCHAR* argv[])
     CFDNS::parse(CFDNS::TCP, "127.0.0.1", addrInfo);
 
     CFNetAddr addr = addrInfo[0];
-    printf("%s\n", addrInfo[0].getIp().c_str());
+    printf("%s\n", addrInfo[0].ip().c_str());
     addr.setPort(1234);
 
     std::list<CFNetObject::SharePtr> listObject;
     CFNetServer server(8);
     server.setAcceptor([&](CFNetObject::SharePtr&& netObject){
-        printf("accept %s %d\n", netObject->getNetAddr().getIp().c_str(), listObject.size());
+        printf("accept %s %d\n", netObject->netAddr().ip().c_str(), listObject.size());
         listObject.push_back(netObject);
         netObject->setReader([&](CFNetMessage&& message){
             printf("recv %s\n", message.getMessage().c_str());

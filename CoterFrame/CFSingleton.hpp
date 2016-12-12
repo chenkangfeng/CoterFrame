@@ -2,7 +2,7 @@
 #ifndef CF_SINGLETON_HPP
 #define CF_SINGLETON_HPP
 
-#include "CFMacro.h"
+#include "CFPrecompiled.h"
 
 NS_CF_BEGIN
 

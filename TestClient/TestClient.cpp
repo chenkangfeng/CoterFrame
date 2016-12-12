@@ -15,7 +15,7 @@ int _tmain(int argc, _TCHAR* argv[])
     CFDNS::parse(CFDNS::TCP, "127.0.0.1", addrInfo);
 
     CFNetAddr addr = addrInfo[0];
-    printf("%s\n", addrInfo[0].getIp().c_str());
+    printf("%s\n", addrInfo[0].ip().c_str());
     addr.setPort(1234);
 
     std::list<CFNetObject::SharePtr> listObject;

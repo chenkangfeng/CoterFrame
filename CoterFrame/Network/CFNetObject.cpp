@@ -8,6 +8,7 @@ NS_CF_BEGIN
 CFNetObject::CFNetObject(CFNetwork* network, evutil_socket_t fd,
 const CFNetAddr& addr, bufferevent* bev) :
 _reader(nullptr), _writer(nullptr),
+_buffer(network->isMultiThread()),
 _network(network), _fd(fd), _addr(addr), _bev(bev)
 {
     if (nullptr != _bev) {
@@ -38,29 +39,7 @@ void CFNetObject::sendMessage(const std::string& message)
     }
 }
 
-const char* CFNetObject::getBuffer(void)
-{
-    return _buffer.data();
-}
-
-CFUInt32 CFNetObject::getBufferLen(void) const
-{
-    return _buffer.length();
-}
-
-void CFNetObject::appendBuffer(const char* str, CFUInt32 len)
-{
-    _buffer.append(str, len);
-}
-
-void CFNetObject::removeBuffer(CFUInt32 start, CFUInt32 len)
-{
-    if (start >= 0 && start + len <= _buffer.length()) {
-        _buffer.erase(start, len);
-    }
-}
-
-const CFNetAddr& CFNetObject::getNetAddr(void) const
+const CFNetAddr& CFNetObject::netAddr(void) const
 {
     return _addr;
 }
@@ -88,19 +67,23 @@ void CFNetObject::_doRead(struct bufferevent* bev)
     if (nullptr != _network) {
         struct evbuffer* input = bufferevent_get_input(bev);
         if (nullptr != input) {
-            CFNetLock netLock(_network->isUseThread());
+            CFNetLock lock;
+            lock.lock();
+
             CFUInt32 len = evbuffer_get_length(input);
             char* buffer = new CF_NOTHROW char[len];
             CFUInt32 recvLen = 0;
             CFUInt32 recvOff = 0;
-            while ((recvLen = evbuffer_remove(input, buffer + recvOff, len)) > 0) {
+            while ((recvLen = evbuffer_remove(input, buffer + recvOff, len - recvOff)) > 0) {
                 recvOff += recvLen;
+                if (recvOff >= len) {
+                    break;
+                }
             }
-            appendBuffer(buffer, recvOff);
+            _buffer.appendBuffer(buffer, recvOff);
             CF_SAFA_DELETE_ARRAY(buffer);
-            if (_reader) {
-                _reader(CFNetMessage(_buffer, CFNetHead::UseHead));
-            }
+
+            lock.unlock();
         }
     }
 }

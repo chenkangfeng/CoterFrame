@@ -8,11 +8,16 @@ NS_CF_BEGIN
 CFNetClient::CFNetClient(void) :
 _connector(nullptr)
 {
-#ifdef CF_PLATFORM(CF_WIN)
+    CFBool initFailed = false;
+#if CF_PLATFORM(CF_WIN)
     WSADATA wsaData;
-    WSAStartup(MAKEWORD(2, 2), &wsaData);
+    if (0 != WSAStartup(MAKEWORD(2, 2), &wsaData)) {
+        initFailed = true;
+    }
 #endif
-    _base = event_base_new();
+    if (!initFailed) {
+        _base = event_base_new();
+    }
 }
 
 CFNetClient::~CFNetClient(void)
@@ -26,6 +31,8 @@ void CFNetClient::setConnector(const CFNetConnector& connector)
 
 CFBool CFNetClient::startClient(const CFNetAddr& addr)
 {
+    _addr = addr;
+
     CFBool ret = false;
     if (!_isRunning && nullptr != _base) {
         _isRunning = true;
@@ -36,16 +43,14 @@ CFBool CFNetClient::startClient(const CFNetAddr& addr)
         }
 
         if (nullptr != bev) {
-            int ret = bufferevent_socket_connect(bev, &addr.getSockAddr().addr, addr.getSockLen());
+            int ret = bufferevent_socket_connect(bev, &addr.addr(), addr.length());
             if (0 != ret) {
                 bufferevent_free(bev);
                 _closeNetwork();
                 return false;
             }
             else {
-                evutil_socket_t fd = bufferevent_getfd(bev);
-                bufferevent_enable(bev, EV_READ | EV_WRITE);
-                _doConnect(fd, addr, bev);
+                bufferevent_setcb(bev, nullptr, nullptr, _onConnect, this);
                 ret = true;
             }
         }
@@ -54,10 +59,20 @@ CFBool CFNetClient::startClient(const CFNetAddr& addr)
     return ret;
 }
 
-void CFNetClient::_doConnect(evutil_socket_t fd, const CFNetAddr& addr, struct bufferevent* bev)
+void CFNetClient::_onConnect(struct bufferevent* bev, CFInt16 events, void* data)
+{
+    CFNetClient* netClient = static_cast<CFNetClient*>(data);
+    if (nullptr != netClient && BEV_EVENT_CONNECTED == events) {
+        netClient->_doConnect(bev);
+        bufferevent_enable(bev, EV_READ | EV_WRITE);
+    }
+}
+
+void CFNetClient::_doConnect(struct bufferevent* bev)
 {
     if (_connector) {
-        CFNetObject::SharePtr netObject(new CF_NOTHROW CFNetObject(this, fd, addr, bev));
+        evutil_socket_t fd = bufferevent_getfd(bev);
+        CFNetObject::SharePtr netObject(new CF_NOTHROW CFNetObject(this, fd, _addr, bev));
         _connector(std::move(netObject));
     }
 }

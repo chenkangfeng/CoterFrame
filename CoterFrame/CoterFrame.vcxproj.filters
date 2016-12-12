@@ -31,34 +31,34 @@
     <ClInclude Include="CFSharePtr.hpp">
       <Filter>CoterFrame</Filter>
     </ClInclude>
-    <ClInclude Include="Network\CFDNS.h">
-      <Filter>CoterFrame\Network</Filter>
-    </ClInclude>
     <ClInclude Include="Network\CFNetAddr.h">
       <Filter>CoterFrame\Network</Filter>
     </ClInclude>
     <ClInclude Include="Network\CFNetAddrInfo.h">
       <Filter>CoterFrame\Network</Filter>
     </ClInclude>
-    <ClInclude Include="Network\CFNetClient.h">
-      <Filter>CoterFrame\Network</Filter>
-    </ClInclude>
-    <ClInclude Include="Network\CFNetMessage.h">
-      <Filter>CoterFrame\Network</Filter>
-    </ClInclude>
-    <ClInclude Include="Network\CFNetObject.h">
-      <Filter>CoterFrame\Network</Filter>
-    </ClInclude>
-    <ClInclude Include="Network\CFNetServer.h">
+    <ClInclude Include="Network\CFDNS.h">
       <Filter>CoterFrame\Network</Filter>
     </ClInclude>
     <ClInclude Include="Network\CFNetwork.h">
       <Filter>CoterFrame\Network</Filter>
     </ClInclude>
-    <ClInclude Include="Network\CFNetLock.h">
+    <ClInclude Include="Network\CFNetClient.h">
+      <Filter>CoterFrame\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\CFNetServer.h">
+      <Filter>CoterFrame\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\CFNetObject.h">
       <Filter>CoterFrame\Network</Filter>
     </ClInclude>
     <ClInclude Include="Network\CFNetBuffer.h">
+      <Filter>CoterFrame\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\CFNetLock.h">
+      <Filter>CoterFrame\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\CFNetMessage.h">
       <Filter>CoterFrame\Network</Filter>
     </ClInclude>
     <ClInclude Include="Network\CFNetPack.h">
@@ -69,34 +69,34 @@
     <ClCompile Include="CFPrecompiled.cpp">
       <Filter>CoterFrame</Filter>
     </ClCompile>
-    <ClCompile Include="Network\CFDNS.cpp">
-      <Filter>CoterFrame\Network</Filter>
-    </ClCompile>
     <ClCompile Include="Network\CFNetAddr.cpp">
       <Filter>CoterFrame\Network</Filter>
     </ClCompile>
     <ClCompile Include="Network\CFNetAddrInfo.cpp">
       <Filter>CoterFrame\Network</Filter>
     </ClCompile>
-    <ClCompile Include="Network\CFNetClient.cpp">
-      <Filter>CoterFrame\Network</Filter>
-    </ClCompile>
-    <ClCompile Include="Network\CFNetMessage.cpp">
-      <Filter>CoterFrame\Network</Filter>
-    </ClCompile>
-    <ClCompile Include="Network\CFNetObject.cpp">
-      <Filter>CoterFrame\Network</Filter>
-    </ClCompile>
-    <ClCompile Include="Network\CFNetServer.cpp">
+    <ClCompile Include="Network\CFDNS.cpp">
       <Filter>CoterFrame\Network</Filter>
     </ClCompile>
     <ClCompile Include="Network\CFNetwork.cpp">
       <Filter>CoterFrame\Network</Filter>
     </ClCompile>
-    <ClCompile Include="Network\CFNetLock.cpp">
+    <ClCompile Include="Network\CFNetClient.cpp">
+      <Filter>CoterFrame\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\CFNetServer.cpp">
+      <Filter>CoterFrame\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\CFNetObject.cpp">
       <Filter>CoterFrame\Network</Filter>
     </ClCompile>
     <ClCompile Include="Network\CFNetBuffer.cpp">
+      <Filter>CoterFrame\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\CFNetLock.cpp">
+      <Filter>CoterFrame\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\CFNetMessage.cpp">
       <Filter>CoterFrame\Network</Filter>
     </ClCompile>
     <ClCompile Include="Network\CFNetPack.cpp">

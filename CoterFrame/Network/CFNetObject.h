@@ -3,10 +3,10 @@
 #define CF_NET_OBJECT_H
 
 #include "CFPrecompiled.h"
-#include <string>
 #include <functional>
 #include "CFNetwork.h"
 #include "CFNetAddr.h"
+#include "CFNetBuffer.h"
 #include "CFNetMessage.h"
 
 NS_CF_BEGIN
@@ -25,12 +25,7 @@ public:
 
     void sendMessage(const std::string& message);
 
-    const char* getBuffer();
-    CFUInt32 getBufferLen() const;
-    void appendBuffer(const char* str, CFUInt32 len);
-    void removeBuffer(CFUInt32 start, CFUInt32 len);
-
-    const CFNetAddr& getNetAddr(void) const;
+    const CFNetAddr& netAddr(void) const;
 private:
     static void _onRead(struct bufferevent* bev, void* data);
     static void _onWrite(struct bufferevent* bev, void* data);
@@ -38,10 +33,10 @@ private:
 
     void _doRead(struct bufferevent* bev);
 
-    std::string _buffer;
-
     CFNetReader _reader;
     CFNetWriter _writer;
+
+    CFNetBuffer _buffer;
 
     CFNetwork* _network;
     evutil_socket_t _fd;
