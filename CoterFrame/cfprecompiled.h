@@ -7,7 +7,6 @@
 #include "include/cfmacro.h"
 #include "kernel/cfsingleton.hpp"
 #include "kernel/cfsharedptr.hpp"
-#include "kernel/cfobject.h"
 #include "kernel/cfglobal.hpp"
 #include "kernel/cfinterface.hpp"
 #include "kernel/cfcomponent.hpp"

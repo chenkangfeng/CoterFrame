@@ -1,44 +1,35 @@
 
-#ifndef CF_NET_ADDR_H
-#define CF_NET_ADDR_H
+#ifndef CF_I_NET_ADDR_H
+#define CF_I_NET_ADDR_H
 
-#include "CFPrecompiled.h"
+#include <string>
+#include "include/cfmacro.h"
+#include "kernel/cfinterface.hpp"
 #include "evutil.h"
 
 NS_CF_BEGIN
 
-class CFNetAddr
+CF_INTERFACE(CFINetAddr)
 {
 public:
-    CFNetAddr(void);
-    CFNetAddr(struct sockaddr* addr);
-    CFNetAddr(struct sockaddr* addr, socklen_t len);
-    CFNetAddr(CFUInt16 family, CFUInt16 port, const std::string& ip);
-    ~CFNetAddr(void);
+    CFINetAddr(void) {}
+    virtual ~CFINetAddr(void) {}
 
-    const sockaddr addr(void) const;
-    CFInt32 length(void) const;
+    virtual const sockaddr addr(void) const = 0;
+    virtual CFInt32 length(void) const = 0;
+    virtual void set_addr(struct sockaddr*) = 0;
+    virtual void set_addr(struct sockaddr*, socklen_t) = 0;
 
-    CFUInt16 family(void) const;
-    void setFamily(CFUInt16 family);
+    virtual CFUInt16 family(void) const = 0;
+    virtual void set_family(CFUInt16) = 0;
 
-    CFUInt16 port(void) const;
-    void setPort(CFUInt16 port);
+    virtual CFUInt16 port(void) const = 0;
+    virtual void set_port(CFUInt16) = 0;
 
-    std::string ip(void) const;
-    void setIp(const std::string& ip);
-private:
-    typedef union {
-        struct sockaddr addr;
-        struct sockaddr_in ipv4;
-        struct sockaddr_in6 ipv6;
-    } CFSockAddr;
-
-    void _initAddr(void);
-
-    CFSockAddr _addr;
+    virtual std::string ip(void) const = 0;
+    virtual void set_ip(const std::string&) = 0;
 };
 
 NS_CF_END
 
-#endif // CF_NET_ADDR_H
+#endif // CF_I_NET_ADDR_H

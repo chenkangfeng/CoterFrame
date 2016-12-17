@@ -78,18 +78,19 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="cfprecompiled.cpp" />
-    <ClCompile Include="kernel\cfobject.cpp" />
+    <ClCompile Include="network\cfcnetaddr.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cfprecompiled.h" />
     <ClInclude Include="include\cfmacro.h" />
     <ClInclude Include="include\cfplatform.h" />
+    <ClInclude Include="interface\cfinetaddr.h" />
     <ClInclude Include="kernel\cfcomponent.hpp" />
     <ClInclude Include="kernel\cfglobal.hpp" />
     <ClInclude Include="kernel\cfinterface.hpp" />
-    <ClInclude Include="kernel\cfobject.h" />
     <ClInclude Include="kernel\cfsharedptr.hpp" />
     <ClInclude Include="kernel\cfsingleton.hpp" />
+    <ClInclude Include="network\cfcnetaddr.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -14,6 +14,12 @@
     <Filter Include="CoterFrame\kernel">
       <UniqueIdentifier>{7796e09c-31a0-4d75-8536-eb3c0aec4c12}</UniqueIdentifier>
     </Filter>
+    <Filter Include="CoterFrame\interface">
+      <UniqueIdentifier>{2040387d-7042-49af-81e3-dd8c3877542c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CoterFrame\network">
+      <UniqueIdentifier>{0c2cbf1e-7139-4b7a-8e77-11e4b2f78302}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -22,8 +28,8 @@
     <ClCompile Include="cfprecompiled.cpp">
       <Filter>CoterFrame</Filter>
     </ClCompile>
-    <ClCompile Include="kernel\cfobject.cpp">
-      <Filter>CoterFrame\kernel</Filter>
+    <ClCompile Include="network\cfcnetaddr.cpp">
+      <Filter>CoterFrame\network</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -39,9 +45,6 @@
     <ClInclude Include="kernel\cfsingleton.hpp">
       <Filter>CoterFrame\kernel</Filter>
     </ClInclude>
-    <ClInclude Include="kernel\cfobject.h">
-      <Filter>CoterFrame\kernel</Filter>
-    </ClInclude>
     <ClInclude Include="kernel\cfsharedptr.hpp">
       <Filter>CoterFrame\kernel</Filter>
     </ClInclude>
@@ -53,6 +56,12 @@
     </ClInclude>
     <ClInclude Include="kernel\cfcomponent.hpp">
       <Filter>CoterFrame\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="interface\cfinetaddr.h">
+      <Filter>CoterFrame\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="network\cfcnetaddr.h">
+      <Filter>CoterFrame\network</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

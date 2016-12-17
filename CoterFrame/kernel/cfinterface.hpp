@@ -18,7 +18,9 @@ public:
     virtual ~CFInterface(void) {}
 
     static CF_SHARED_PTR<Interface> create(Args... args) {
-        return CFGlobal::create<Interface>(args...);
+        // return CFGlobal::create<Interface>(args...);
+        // Unable to create an abstract class
+        return CF_SHARED_PTR<Interface>();
     }
 
     static CF_SHARED_PTR<Interface> createComponent(Args... args) {
