@@ -34,7 +34,7 @@ public:
     static CF_SHARED_PTR<Subclass> create(Args... args) {
         CF_SHARED_PTR<Subclass> instance;
         if (isInherit<Baseclass, Subclass>()) {
-            instance = std::move(CF_SHARED_PTR<Subclass>(new CF_NOTHROW Subclass(args...)));
+            instance = std::move(create<Subclass>(args...));
         }
         return instance;
     }
