@@ -3,9 +3,13 @@
 #define CF_PRECOMPILED_H
 
 #include <string>
-#include "CFPlatform.h"
-#include "CFMacro.h"
-#include "CFSingleton.hpp"
-#include "CFSharePtr.hpp"
+#include "include/cfplatform.h"
+#include "include/cfmacro.h"
+#include "kernel/cfsingleton.hpp"
+#include "kernel/cfsharedptr.hpp"
+#include "kernel/cfobject.h"
+#include "kernel/cfglobal.hpp"
+#include "kernel/cfinterface.hpp"
+#include "kernel/cfcomponent.hpp"
 
 #endif // CF_PRECOMPILED_H
