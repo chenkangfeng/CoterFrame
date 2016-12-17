@@ -26,6 +26,10 @@ public:
         return false;
     }
 
+    template <typename Baseclass, typename... Args>
+    static CF_SHARED_PTR<Baseclass> create(Args... args) {
+        return CF_SHARED_PTR<Baseclass>(new CF_NOTHROW Baseclass(args...));
+    }
     template <typename Baseclass, typename Subclass, typename... Args>
     static CF_SHARED_PTR<Subclass> create(Args... args) {
         CF_SHARED_PTR<Subclass> instance;

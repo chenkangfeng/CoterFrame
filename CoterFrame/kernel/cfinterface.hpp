@@ -18,7 +18,7 @@ public:
     virtual ~CFInterface(void) {}
 
     static CF_SHARED_PTR<Interface> create(Args... args) {
-        return CF_SHARED_PTR<Interface>(new CF_NOTHROW Interface(args...));
+        return CFGlobal::create<Interface>(args...);
     }
 
     static CF_SHARED_PTR<Interface> createComponent(Args... args) {
