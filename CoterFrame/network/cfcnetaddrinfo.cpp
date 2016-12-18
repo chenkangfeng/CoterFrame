@@ -18,7 +18,7 @@ void CFCNetAddrInfo::addAddrInfo(evutil_addrinfo* addr_info)
         CFINetAddr::SharedPtr addr = CFINetAddr::createComponent();
         if (addr) {
             addr->set_addr(addr_info->ai_addr, addr_info->ai_addrlen);
-            cfvec_addr_.pushBack(std::move(addr));
+            cfvec_addr_.push_back(std::move(addr));
         }
         addr_info = addr_info->ai_next;
     }

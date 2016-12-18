@@ -81,7 +81,7 @@
     <ClInclude Include="network\cfcnetdns.h">
       <Filter>CoterFrame\network</Filter>
     </ClInclude>
-    <ClInclude Include="kernel\cfvector.hpp">
+    <ClInclude Include="kernel\cfstl.hpp">
       <Filter>CoterFrame\kernel</Filter>
     </ClInclude>
   </ItemGroup>

@@ -7,9 +7,9 @@
 #include "include/cfmacro.h"
 #include "kernel/cfsingleton.hpp"
 #include "kernel/cfsharedptr.hpp"
+#include "kernel/cfstl.hpp"
 #include "kernel/cfglobal.hpp"
 #include "kernel/cfinterface.hpp"
 #include "kernel/cfcomponent.hpp"
-#include "kernel/cfvector.hpp"
 
 #endif // CF_PRECOMPILED_H

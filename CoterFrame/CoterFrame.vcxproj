@@ -94,7 +94,7 @@
     <ClInclude Include="kernel\cfinterface.hpp" />
     <ClInclude Include="kernel\cfsharedptr.hpp" />
     <ClInclude Include="kernel\cfsingleton.hpp" />
-    <ClInclude Include="kernel\cfvector.hpp" />
+    <ClInclude Include="kernel\cfstl.hpp" />
     <ClInclude Include="network\cfcnetaddr.h" />
     <ClInclude Include="network\cfcnetaddrinfo.h" />
     <ClInclude Include="network\cfcnetdns.h" />

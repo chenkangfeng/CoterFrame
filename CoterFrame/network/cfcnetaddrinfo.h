@@ -3,7 +3,7 @@
 #define CF_C_NET_ADDR_INFO_H
 
 #include "interface/cfinetaddrinfo.h"
-#include "kernel/cfvector.hpp"
+#include "kernel/cfstl.hpp"
 
 NS_CF_BEGIN
 
