@@ -31,6 +31,12 @@
     <ClCompile Include="network\cfcnetaddr.cpp">
       <Filter>CoterFrame\network</Filter>
     </ClCompile>
+    <ClCompile Include="network\cfcnetaddrinfo.cpp">
+      <Filter>CoterFrame\network</Filter>
+    </ClCompile>
+    <ClCompile Include="network\cfcnetdns.cpp">
+      <Filter>CoterFrame\network</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cfprecompiled.h">
@@ -62,6 +68,21 @@
     </ClInclude>
     <ClInclude Include="network\cfcnetaddr.h">
       <Filter>CoterFrame\network</Filter>
+    </ClInclude>
+    <ClInclude Include="interface\cfinetaddrinfo.h">
+      <Filter>CoterFrame\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="network\cfcnetaddrinfo.h">
+      <Filter>CoterFrame\network</Filter>
+    </ClInclude>
+    <ClInclude Include="interface\cfinetdns.h">
+      <Filter>CoterFrame\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="network\cfcnetdns.h">
+      <Filter>CoterFrame\network</Filter>
+    </ClInclude>
+    <ClInclude Include="kernel\cfvector.hpp">
+      <Filter>CoterFrame\kernel</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

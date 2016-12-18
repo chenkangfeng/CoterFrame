@@ -17,8 +17,8 @@ public:
     virtual void set_addr(struct sockaddr* addr);
     virtual void set_addr(struct sockaddr* addr, socklen_t length);
 
-    virtual CFUInt16 family(void) const;
-    virtual void set_family(CFUInt16 family);
+    virtual Family family(void) const;
+    virtual void set_family(Family family);
 
     virtual CFUInt16 port(void) const;
     virtual void set_port(CFUInt16 port);

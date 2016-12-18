@@ -10,5 +10,6 @@
 #include "kernel/cfglobal.hpp"
 #include "kernel/cfinterface.hpp"
 #include "kernel/cfcomponent.hpp"
+#include "kernel/cfvector.hpp"
 
 #endif // CF_PRECOMPILED_H

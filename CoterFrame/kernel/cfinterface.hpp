@@ -28,7 +28,7 @@ public:
     }
 
     template <typename Implement>
-    static void registerComponent(void) {
+    static void setupComponent(void) {
         if (CFGlobal::isInherit<Interface, Implement>()) {
             creator_ = Implement::create;
         }

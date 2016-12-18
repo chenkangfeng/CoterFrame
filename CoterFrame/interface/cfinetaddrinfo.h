@@ -1,29 +1,25 @@
 
-#ifndef CF_NET_ADDR_INFO_H
-#define CF_NET_ADDR_INFO_H
+#ifndef CF_I_NET_ADDR_INFO_H
+#define CF_I_NET_ADDR_INFO_H
 
-#include "CFPrecompiled.h"
 #include <vector>
-#include "evutil.h"
-#include "CFNetAddr.h"
+#include "kernel/cfinterface.hpp"
+#include "cfinetaddr.h"
 
 NS_CF_BEGIN
 
-class CFNetAddrInfo
+CF_INTERFACE(CFINetAddrInfo)
 {
 public:
-    CFNetAddrInfo(void);
-    CFNetAddrInfo(evutil_addrinfo* addrInfo);
-    ~CFNetAddrInfo(void);
+    CFINetAddrInfo(void) {}
+    virtual ~CFINetAddrInfo(void) {}
 
-    void addAddrInfo(evutil_addrinfo* addrInfo);
+    virtual void addAddrInfo(evutil_addrinfo*) = 0;
 
-    CFInt32 size(void);
-    CFNetAddr& operator[](CFInt32 index);
-private:
-    std::vector<CFNetAddr> _vecAddrs;
+    virtual CFInt32 size(void) = 0;
+    virtual CFINetAddr& operator[](CFInt32) = 0;
 };
 
 NS_CF_END
 
-#endif // CF_NET_ADDR_INFO_H
+#endif // CF_I_NET_ADDR_INFO_H

@@ -1,32 +1,28 @@
 
-#ifndef CF_DNS_H
-#define CF_DNS_H
+#ifndef CF_I_NET_DNS_H
+#define CF_I_NET_DNS_H
 
-#include "CFPrecompiled.h"
-#include "evdns.h"
-#include "CFNetAddrInfo.h"
+#include <functional>
+#include "include/cfmacro.h"
+#include "cfinetaddrinfo.h"
 
 NS_CF_BEGIN
 
-class CFDNS
+CF_INTERFACE(CFINetDNS)
 {
 public:
     typedef enum {
-        TCP = IPPROTO_TCP,
-        UDP = IPPROTO_UDP
-    } CFProtocol;
+        kTCP = IPPROTO_TCP,
+        kUDP = IPPROTO_UDP
+    } Protocol;
+    typedef std::function<void(CFINetAddrInfo&&)> DNSCallback;
 
-    CFDNS(void);
-    ~CFDNS(void);
+    CFINetDNS(void) {}
+    virtual ~CFINetDNS(void) {}
 
-    static CFBool parse(CFProtocol protocol, CFStrPtr domain, CFNetAddrInfo& addrInfo);
-private:
-    static void _initAddrInfo(CFProtocol protocol, evutil_addrinfo& hints);
-
-    struct event_base* _eventBase;
-    struct evdns_base* _evdnsBase;
+    virtual CFBool parse(Protocol protocol, CFStrPtr domain, DNSCallback dns_callback) = 0;
 };
 
 NS_CF_END
 
-#endif // CF_DNS_H
+#endif // CF_I_NET_DNS_H

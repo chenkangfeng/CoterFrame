@@ -12,6 +12,11 @@ NS_CF_BEGIN
 CF_INTERFACE(CFINetAddr)
 {
 public:
+    typedef enum {
+        kIPv4 = AF_INET,
+        kIPv6 = AF_INET6
+    } Family;
+
     CFINetAddr(void) {}
     virtual ~CFINetAddr(void) {}
 
@@ -20,8 +25,8 @@ public:
     virtual void set_addr(struct sockaddr*) = 0;
     virtual void set_addr(struct sockaddr*, socklen_t) = 0;
 
-    virtual CFUInt16 family(void) const = 0;
-    virtual void set_family(CFUInt16) = 0;
+    virtual Family family(void) const = 0;
+    virtual void set_family(Family) = 0;
 
     virtual CFUInt16 port(void) const = 0;
     virtual void set_port(CFUInt16) = 0;

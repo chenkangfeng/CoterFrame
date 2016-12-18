@@ -6,19 +6,19 @@
 
 NS_CF_BEGIN
 
-enum class SingletonType { kLazy, kFast };
+enum class CFSingletonType { kLazy, kFast };
 
-template <typename T, SingletonType type = SingletonType::kLazy>
-class Singleton {};
+template <typename T, CFSingletonType type = CFSingletonType::kLazy>
+class CFSingleton {};
 
 template <typename T>
-class Singleton<T, SingletonType::kLazy>
+class CFSingleton<T, CFSingletonType::kLazy>
 {
 public:
-    Singleton(void) {
+    CFSingleton(void) {
         instance_ = static_cast<T*>(this);
     }
-    virtual ~Singleton(void) {}
+    virtual ~CFSingleton(void) {}
 
     static T* getInstance(void) {
         return nullptr == instance_ ? new CF_NOTHROW T() : instance_;
@@ -31,14 +31,14 @@ private:
 };
 
 template <typename T>
-T* Singleton<T, SingletonType::kLazy>::instance_ = nullptr;
+T* CFSingleton<T, CFSingletonType::kLazy>::instance_ = nullptr;
 
 template <typename T>
-class Singleton<T, SingletonType::kFast>
+class CFSingleton<T, CFSingletonType::kFast>
 {
 public:
-    Singleton(void) {}
-    virtual ~Singleton(void) {}
+    CFSingleton(void) {}
+    virtual ~CFSingleton(void) {}
 
     static T* getInstance(void) {
         return instance_;
@@ -51,7 +51,7 @@ private:
 };
 
 template <typename T>
-T* Singleton<T, SingletonType::kFast>::instance_ = new CF_NOTHROW T();
+T* CFSingleton<T, CFSingletonType::kFast>::instance_ = new CF_NOTHROW T();
 
 NS_CF_END
 
