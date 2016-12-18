@@ -2,31 +2,29 @@
 #ifndef CF_PLATFORM_H
 #define CF_PLATFORM_H
 
-typedef enum {
-    kPlatformWin        = (1 << 0),
-    kPlatformLinux      = (1 << 1),
-    kPlatformMac        = (1 << 2),
-    kPlatformIOS        = (1 << 3),
-    kPlatformAndroid    = (1 << 4)
-} CFPlatform;
+#define CF_PLATFORM_WIN     (1 << 0)
+#define CF_PLATFORM_LINUX   (1 << 1)
+#define CF_PLATFORM_MAC     (1 << 2)
+#define CF_PLATFORM_IOS     (1 << 3)
+#define CF_PLATFORM_ANDROID (1 << 4)
 
 #if defined(_WINDOWS) || defined(WIN) || defined(_WIN32) || defined(_WIN64)
-const CFPlatform kPlatform = kPlatformWin;
+#define CF_PLATFORM_VAR CF_PLATFORM_WIN
 #elif defined(ANDROID)
-const CFPlatform kPlatform = kPlatformAndroid;
+#define CF_PLATFORM_VAR CF_PLATFORM_ANDROID
 #elif defined(__APPLE__) || defined(__OSX__)
 #include <TargetConditionals.h>
 #if TARGET_OS_MAC
-const CFPlatform kPlatform = kPlatformMac;
+#define CF_PLATFORM_VAR CF_PLATFORM_MAC
 #elif TARGET_OS_IPHONE
-const CFPlatform kPlatform = kPlatformIOS;
+#define CF_PLATFORM_VAR CF_PLATFORM_IOS
 #endif
 #elif defined(LINUX)
-const CFPlatform kPlatform = kPlatformLinux;
+#define CF_PLATFORM_VAR CF_PLATFORM_LINUX
 #else
 #error "Cannot recognize the platform!"
 #endif
 
-#define CF_PLATFORM(Platform) (kPlatform & (Platform))
+#define CF_PLATFORM(Platform) (CF_PLATFORM_VAR & (Platform))
 
 #endif // CF_PLATFORM_H

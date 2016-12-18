@@ -18,6 +18,9 @@ public:
     void pushBack(CF_SHARED_PTR<T>&& var) {
         vec_share_ptr_.push_back(var);
     }
+    CFBool empty(void) {
+        return vec_share_ptr_.empty();
+    }
     CFUInt32 size(void) {
         return (CFUInt32)vec_share_ptr_.size();
     }

@@ -19,9 +19,11 @@ int _tmain(int argc, _TCHAR* argv[])
 
     CFINetDNS::SharedPtr dns = CFINetDNS::createComponent();
     if (dns) {
-        dns->parse(CFINetDNS::kTCP, "192.168.1.101", [](CFINetAddrInfo::SharedPtr&& addr_info){
-            for (int i = 0; i < addr_info->size(); ++i) {
-                printf("%s\n", addr_info->at(0)->ip().c_str());
+        dns->parse(CFINetDNS::kTCP, "www.baidu.com", [](CFINetAddrInfo::SharedPtr&& addr_info){
+            if (addr_info && addr_info->size() > 0) {
+                for (int i = 0; i < addr_info->size(); ++i) {
+                    printf("%s\n", addr_info->at(0)->ip().c_str());
+                }
             }
         });
     }
