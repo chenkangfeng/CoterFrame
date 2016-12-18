@@ -16,7 +16,7 @@ public:
     virtual void addAddrInfo(evutil_addrinfo* addr_info);
 
     virtual CFInt32 size(void);
-    virtual CFINetAddr& operator[](CFInt32 index);
+    virtual CFINetAddr::SharedPtr& at(CFInt32 index);
 private:
     CFVector<CFINetAddr> cfvec_addr_;
 };

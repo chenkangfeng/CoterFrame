@@ -35,10 +35,10 @@ CFBool CFCNetDNS::parse(Protocol protocol, CFStrPtr domain, DNSCallback dns_call
 
     CFBool ret = (evutil_getaddrinfo(domain, nullptr, &hints, &result) == 0);
     if (ret){
-        CF_SHARED_PTR<CFINetAddrInfo> addr_info = CFINetAddrInfo::createComponent();
+        CFINetAddrInfo::SharedPtr addr_info = CFINetAddrInfo::createComponent();
         if (addr_info) {
             addr_info->addAddrInfo(result);
-            dns_callback(std::move(*addr_info.get()));
+            dns_callback(std::move(addr_info));
         }
         evutil_freeaddrinfo(result);
     }

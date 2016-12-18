@@ -6,7 +6,8 @@
 #include "cfglobal.hpp"
 
 #define CF_COMPONENT(Interface, Implement, ...) \
-class Implement : public CoterFrame::CFComponent<Interface, Implement, ##__VA_ARGS__>
+class Implement : public CoterFrame::CFComponent<Interface, Implement, ##__VA_ARGS__>, \
+    public CFSharedPtr<Implement>
 
 NS_CF_BEGIN
 

@@ -6,7 +6,8 @@
 #include "cfcomponent.hpp"
 
 #define CF_INTERFACE(Interface, ...) \
-class Interface : public CoterFrame::CFInterface<Interface, ##__VA_ARGS__>
+class Interface : public CoterFrame::CFInterface<Interface, ##__VA_ARGS__>, \
+    public CFSharedPtr<Interface>
 
 NS_CF_BEGIN
 

@@ -17,20 +17,25 @@ typedef CF_SHARED_PTR<Type> SharedPtr;
 
 NS_CF_BEGIN
 
+template <typename T>
+class CFWeakPtr
+{
+public:
+    CF_WEAK_PTR_DECLARE(T)
+};
+
 template <typename T, CFBool enable_shared_from_this = false>
 class CFSharedPtr {};
 
 template <typename T>
 class CFSharedPtr<T, false>
 {
-    CF_WEAK_PTR_DECLARE(T)
     CF_SHARED_PTR_DECLARE(T)
 };
 
 template <typename T>
 class CFSharedPtr<T, true> : public std::enable_shared_from_this<T>
 {
-    CF_WEAK_PTR_DECLARE(T)
     CF_SHARED_PTR_DECLARE(T)
 };
 

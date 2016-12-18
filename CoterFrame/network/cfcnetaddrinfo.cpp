@@ -15,7 +15,7 @@ CFCNetAddrInfo::~CFCNetAddrInfo(void)
 void CFCNetAddrInfo::addAddrInfo(evutil_addrinfo* addr_info)
 {
     while (nullptr != addr_info) {
-        CF_SHARED_PTR<CFINetAddr> addr = CFINetAddr::createComponent();
+        CFINetAddr::SharedPtr addr = CFINetAddr::createComponent();
         if (addr) {
             addr->set_addr(addr_info->ai_addr, addr_info->ai_addrlen);
             cfvec_addr_.pushBack(std::move(addr));
@@ -29,9 +29,9 @@ CFInt32 CFCNetAddrInfo::size(void)
     return cfvec_addr_.size();
 }
 
-CFINetAddr& CFCNetAddrInfo::operator[](CFInt32 index)
+CFINetAddr::SharedPtr& CFCNetAddrInfo::at(CFInt32 index)
 {
-    return *cfvec_addr_[index].get();
+    return cfvec_addr_[index];
 }
 
 NS_CF_END

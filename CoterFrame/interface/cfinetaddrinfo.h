@@ -17,7 +17,7 @@ public:
     virtual void addAddrInfo(evutil_addrinfo*) = 0;
 
     virtual CFInt32 size(void) = 0;
-    virtual CFINetAddr& operator[](CFInt32) = 0;
+    virtual CFINetAddr::SharedPtr& at(CFInt32) = 0;
 };
 
 NS_CF_END
