@@ -8,15 +8,19 @@
 
 NS_CF_BEGIN
 
+// addr info interface
 CF_INTERFACE(CFINetAddrInfo)
 {
 public:
     CFINetAddrInfo(void) {}
     virtual ~CFINetAddrInfo(void) {}
 
+    // add addr info
     virtual void addAddrInfo(evutil_addrinfo*) = 0;
 
+    // get addr info size
     virtual CFInt32 size(void) = 0;
+    // get addr in addr info
     virtual CFINetAddr::SharedPtr& at(CFInt32) = 0;
 };
 

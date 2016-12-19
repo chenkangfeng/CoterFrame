@@ -6,12 +6,14 @@
 
 NS_CF_BEGIN
 
+// dns component
 CF_COMPONENT(CFINetDNS, CFCNetDNS)
 {
 public:
     CFCNetDNS(void);
     virtual ~CFCNetDNS(void);
 
+    // parse domain
     virtual CFBool parse(Protocol protocol, CFStrPtr domain, Callback callback);
 };
 

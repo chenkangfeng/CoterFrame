@@ -6,14 +6,18 @@
 
 NS_CF_BEGIN
 
+// server interface
 CF_INTERFACE(CFINetServer, CFUInt8), public CFNetwork
 {
 public:
     CFINetServer(CFUInt8) {}
     virtual ~CFINetServer(void) {}
 
+    // start server
     virtual CFBool start(const CFINetAddr::SharedPtr&, Callback) = 0;
+    // close server
     virtual void close(void) = 0;
+    // loop server to dispatch event
     virtual void mainLoop(void) = 0;
 };
 

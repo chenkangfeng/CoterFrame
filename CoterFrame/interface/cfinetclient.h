@@ -6,14 +6,18 @@
 
 NS_CF_BEGIN
 
+// client interface
 CF_INTERFACE(CFINetClient), public CFNetwork
 {
 public:
     CFINetClient(void) {}
     virtual ~CFINetClient(void) {}
 
+    // start client
     virtual CFBool start(const CFINetAddr::SharedPtr&, Callback) = 0;
+    // close client
     virtual void close(void) = 0;
+    // loop client to dispatch event
     virtual void mainLoop(void) = 0;
 };
 
