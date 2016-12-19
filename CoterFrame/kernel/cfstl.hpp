@@ -21,10 +21,10 @@ template <typename Key, typename Value, CFBool ordered = false>
 class CFMap {};
 
 template <typename Key, typename Value>
-class CFMap<Key, Value, false> : public std::unordered_map<Key, CF_SHARED_PTR<Value> >{};
+class CFMap<Key, Value, false> : public std::unordered_map<Key, CF_SHARED_PTR<Value> > {};
 
 template <typename Key, typename Value>
-class CFMap<Key, Value, true> : public std::map<Key, CF_SHARED_PTR<Value> >{};
+class CFMap<Key, Value, true> : public std::map<Key, CF_SHARED_PTR<Value> > {};
 
 NS_CF_END
 

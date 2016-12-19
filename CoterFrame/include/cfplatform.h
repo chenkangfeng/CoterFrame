@@ -2,11 +2,11 @@
 #ifndef CF_PLATFORM_H
 #define CF_PLATFORM_H
 
-#define CF_PLATFORM_WIN     (1 << 0)
-#define CF_PLATFORM_LINUX   (1 << 1)
-#define CF_PLATFORM_MAC     (1 << 2)
-#define CF_PLATFORM_IOS     (1 << 3)
-#define CF_PLATFORM_ANDROID (1 << 4)
+#define CF_PLATFORM_WIN     0x01 // (1 << 0)
+#define CF_PLATFORM_LINUX   0x02 // (1 << 1)
+#define CF_PLATFORM_MAC     0x04 // (1 << 2)
+#define CF_PLATFORM_IOS     0x08 // (1 << 3)
+#define CF_PLATFORM_ANDROID 0x10 // (1 << 4)
 
 #if defined(_WINDOWS) || defined(WIN) || defined(_WIN32) || defined(_WIN64)
 #define CF_PLATFORM_VAR CF_PLATFORM_WIN
