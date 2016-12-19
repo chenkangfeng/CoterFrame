@@ -6,11 +6,14 @@
 
 NS_CF_BEGIN
 
+// singleton type enum
 enum class CFSingletonType { kLazy, kFast };
 
+// singleton template
 template <typename T, CFSingletonType type = CFSingletonType::kLazy>
 class CFSingleton {};
 
+// lazy singleton
 template <typename T>
 class CFSingleton<T, CFSingletonType::kLazy>
 {
@@ -30,9 +33,11 @@ private:
     static T* instance_;
 };
 
+// lazy singleton init with nullptr
 template <typename T>
 T* CFSingleton<T, CFSingletonType::kLazy>::instance_ = nullptr;
 
+// fast singleton
 template <typename T>
 class CFSingleton<T, CFSingletonType::kFast>
 {
@@ -50,6 +55,7 @@ private:
     static T* instance_;
 };
 
+// fast singleton init immediately
 template <typename T>
 T* CFSingleton<T, CFSingletonType::kFast>::instance_ = new CF_NOTHROW T();
 
