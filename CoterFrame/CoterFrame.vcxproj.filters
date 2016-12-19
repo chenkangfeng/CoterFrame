@@ -37,6 +37,12 @@
     <ClCompile Include="network\cfcnetdns.cpp">
       <Filter>CoterFrame\network</Filter>
     </ClCompile>
+    <ClCompile Include="network\cfcnetclient.cpp">
+      <Filter>CoterFrame\network</Filter>
+    </ClCompile>
+    <ClCompile Include="network\cfcnetserver.cpp">
+      <Filter>CoterFrame\network</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cfprecompiled.h">
@@ -83,6 +89,21 @@
     </ClInclude>
     <ClInclude Include="kernel\cfstl.hpp">
       <Filter>CoterFrame\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="network\cfcnetclient.h">
+      <Filter>CoterFrame\network</Filter>
+    </ClInclude>
+    <ClInclude Include="network\cfcnetserver.h">
+      <Filter>CoterFrame\network</Filter>
+    </ClInclude>
+    <ClInclude Include="interface\cfinetclient.h">
+      <Filter>CoterFrame\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="interface\cfinetserver.h">
+      <Filter>CoterFrame\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="interface\cfnetwork.h">
+      <Filter>CoterFrame\interface</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

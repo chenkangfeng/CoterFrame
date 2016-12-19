@@ -30,9 +30,9 @@ private:
         struct sockaddr addr;
         struct sockaddr_in ipv4;
         struct sockaddr_in6 ipv6;
-    } CFSockAddr;
+    } SockAddr;
 
-    CFSockAddr addr_;
+    SockAddr addr_;
 };
 
 NS_CF_END

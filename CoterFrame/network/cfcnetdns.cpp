@@ -9,8 +9,8 @@ NS_CF_BEGIN
 CFCNetDNS::CFCNetDNS(void)
 {
 #if CF_PLATFORM(CF_PLATFORM_WIN)
-    WSADATA wsaData;
-    WSAStartup(MAKEWORD(2, 2), &wsaData);
+    WSADATA wsa_data;
+    WSAStartup(MAKEWORD(2, 2), &wsa_data);
 #endif
 }
 
@@ -18,7 +18,7 @@ CFCNetDNS::~CFCNetDNS(void)
 {
 }
 
-CFBool CFCNetDNS::parse(Protocol protocol, CFStrPtr domain, DNSCallback dns_callback)
+CFBool CFCNetDNS::parse(Protocol protocol, CFStrPtr domain, Callback callback)
 {
     evutil_addrinfo hints, *result = nullptr;
     memset(&hints, 0, sizeof(hints));
@@ -47,8 +47,8 @@ CFBool CFCNetDNS::parse(Protocol protocol, CFStrPtr domain, DNSCallback dns_call
             evutil_freeaddrinfo(result);
         }
     }
-    if (dns_callback) {
-        dns_callback(std::move(addr_info));
+    if (callback) {
+        callback(std::move(addr_info));
     }
     return ret;
 }

@@ -15,12 +15,12 @@ public:
         kTCP = IPPROTO_TCP,
         kUDP = IPPROTO_UDP
     } Protocol;
-    typedef std::function<void(CFINetAddrInfo::SharedPtr&&)> DNSCallback;
+    typedef std::function<void(CFINetAddrInfo::SharedPtr&&)> Callback;
 
     CFINetDNS(void) {}
     virtual ~CFINetDNS(void) {}
 
-    virtual CFBool parse(Protocol protocol, CFStrPtr domain, DNSCallback dns_callback) = 0;
+    virtual CFBool parse(Protocol, CFStrPtr, Callback) = 0;
 };
 
 NS_CF_END

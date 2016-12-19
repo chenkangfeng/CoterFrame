@@ -80,7 +80,9 @@
     <ClCompile Include="cfprecompiled.cpp" />
     <ClCompile Include="network\cfcnetaddr.cpp" />
     <ClCompile Include="network\cfcnetaddrinfo.cpp" />
+    <ClCompile Include="network\cfcnetclient.cpp" />
     <ClCompile Include="network\cfcnetdns.cpp" />
+    <ClCompile Include="network\cfcnetserver.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cfprecompiled.h" />
@@ -88,7 +90,10 @@
     <ClInclude Include="include\cfplatform.h" />
     <ClInclude Include="interface\cfinetaddr.h" />
     <ClInclude Include="interface\cfinetaddrinfo.h" />
+    <ClInclude Include="interface\cfinetclient.h" />
     <ClInclude Include="interface\cfinetdns.h" />
+    <ClInclude Include="interface\cfinetserver.h" />
+    <ClInclude Include="interface\cfnetwork.h" />
     <ClInclude Include="kernel\cfcomponent.hpp" />
     <ClInclude Include="kernel\cfglobal.hpp" />
     <ClInclude Include="kernel\cfinterface.hpp" />
@@ -97,7 +102,9 @@
     <ClInclude Include="kernel\cfstl.hpp" />
     <ClInclude Include="network\cfcnetaddr.h" />
     <ClInclude Include="network\cfcnetaddrinfo.h" />
+    <ClInclude Include="network\cfcnetclient.h" />
     <ClInclude Include="network\cfcnetdns.h" />
+    <ClInclude Include="network\cfcnetserver.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

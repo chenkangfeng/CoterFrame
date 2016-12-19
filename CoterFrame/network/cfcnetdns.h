@@ -12,7 +12,7 @@ public:
     CFCNetDNS(void);
     virtual ~CFCNetDNS(void);
 
-    virtual CFBool parse(Protocol protocol, CFStrPtr domain, DNSCallback dns_callback);
+    virtual CFBool parse(Protocol protocol, CFStrPtr domain, Callback callback);
 };
 
 NS_CF_END
