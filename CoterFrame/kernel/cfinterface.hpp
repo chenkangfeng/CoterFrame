@@ -35,6 +35,7 @@ public:
     }
 
     // component setup function
+    // replace interface create function to component create function
     template <typename Implement>
     static void setupComponent(void) {
         if (CFGlobal::isInherit<Interface, Implement>()) {

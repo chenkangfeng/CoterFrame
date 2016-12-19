@@ -23,6 +23,8 @@ public:
     }
     virtual ~CFSingleton(void) {}
 
+    // get singleton instance
+    // if it has been release it will init angin
     static T* getInstance(void) {
         return nullptr == instance_ ? new CF_NOTHROW T() : instance_;
     }
@@ -45,6 +47,8 @@ public:
     CFSingleton(void) {}
     virtual ~CFSingleton(void) {}
 
+    // get singleton instance
+    // if it has been release it will return nullptr
     static T* getInstance(void) {
         return instance_;
     }
