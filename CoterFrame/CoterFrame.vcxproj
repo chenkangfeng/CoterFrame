@@ -90,8 +90,10 @@
     <ClInclude Include="include\cfplatform.h" />
     <ClInclude Include="interface\cfinetaddr.h" />
     <ClInclude Include="interface\cfinetaddrinfo.h" />
+    <ClInclude Include="interface\cfinetbuffer.h" />
     <ClInclude Include="interface\cfinetclient.h" />
     <ClInclude Include="interface\cfinetdns.h" />
+    <ClInclude Include="interface\cfinetobject.h" />
     <ClInclude Include="interface\cfinetserver.h" />
     <ClInclude Include="interface\cfnetwork.h" />
     <ClInclude Include="kernel\cfcomponent.hpp" />

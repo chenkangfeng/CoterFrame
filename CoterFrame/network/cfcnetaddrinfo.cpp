@@ -12,7 +12,7 @@ CFCNetAddrInfo::~CFCNetAddrInfo(void)
 {
 }
 
-void CFCNetAddrInfo::addAddrInfo(evutil_addrinfo* addr_info)
+void CFCNetAddrInfo::addAddrInfo(struct addrinfo* addr_info)
 {
     while (nullptr != addr_info) {
         CFINetAddr::SharedPtr addr = CFINetAddr::createComponent();

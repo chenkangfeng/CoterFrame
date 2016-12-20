@@ -15,7 +15,7 @@ public:
     virtual ~CFCNetAddrInfo(void);
 
     // add addr info
-    virtual void addAddrInfo(evutil_addrinfo* addr_info);
+    virtual void addAddrInfo(struct addrinfo* addr_info);
 
     // get addr info size
     virtual CFInt32 size(void);

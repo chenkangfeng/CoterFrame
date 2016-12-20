@@ -3,9 +3,14 @@
 #define CF_I_NET_ADDR_H
 
 #include <string>
+#if CF_PLATFORM(CF_PLATFORM_WIN)
+#include <winsock2.h>
+#include <ws2tcpip.h>
+#else
+#include <sys/socket.h>
+#endif
 #include "include/cfmacro.h"
 #include "kernel/cfinterface.hpp"
-#include "evutil.h"
 
 NS_CF_BEGIN
 
@@ -13,7 +18,7 @@ NS_CF_BEGIN
 CF_INTERFACE(CFINetAddr)
 {
 public:
-	// ipv4 ipv6 enum
+    // ipv4 ipv6 enum
     typedef enum {
         kIPv4 = AF_INET,
         kIPv6 = AF_INET6

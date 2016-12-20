@@ -1,5 +1,6 @@
 
 #include "cfprecompiled.h"
+#include "evutil.h"
 #include "cfcnetdns.h"
 #include "include/cfplatform.h"
 #include "kernel/cfsharedptr.hpp"
@@ -21,6 +22,8 @@ CFCNetDNS::~CFCNetDNS(void)
 CFBool CFCNetDNS::parse(Protocol protocol, CFStrPtr domain, Callback callback)
 {
     evutil_addrinfo hints, *result = nullptr;
+
+    // init hints
     memset(&hints, 0, sizeof(hints));
     hints.ai_family = AF_UNSPEC;
     hints.ai_flags = EVUTIL_AI_CANONNAME;
@@ -41,6 +44,7 @@ CFBool CFCNetDNS::parse(Protocol protocol, CFStrPtr domain, Callback callback)
     CFBool ret = false;
     CFINetAddrInfo::SharedPtr addr_info = CFINetAddrInfo::createComponent();
     if (addr_info) {
+        // parse domain
         ret = (evutil_getaddrinfo(domain, nullptr, &hints, &result) == 0);
         if (ret){
             addr_info->addAddrInfo(result);

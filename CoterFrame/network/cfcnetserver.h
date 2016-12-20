@@ -33,6 +33,8 @@ private:
 
     // is running of server
     CFBool is_running_;
+    // libevent event config
+    struct event_config* config_;
     // libevent event base
     struct event_base* base_;
     // libevent event listener

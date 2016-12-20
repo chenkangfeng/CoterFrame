@@ -1,28 +1,20 @@
 
-#ifndef CF_NET_BUFFER_H
-#define CF_NET_BUFFER_H
+#ifndef CF_I_NET_BUFFER_H
+#define CF_I_NET_BUFFER_H
 
-#include "CFPrecompiled.h"
-#include "CFNetLock.h"
+#include "include/cfmacro.h"
+#include "kernel/cfinterface.hpp"
 
 NS_CF_BEGIN
 
-class CFNetBuffer
+// buffer interface
+CF_INTERFACE(CFINetBuffer)
 {
 public:
-    CFNetBuffer(CFBool isEnableLock = false);
-    ~CFNetBuffer(void);
-
-    CFUInt32 length() const;
-    void appendBuffer(CFStrPtr str, CFUInt32 len);
-    void removeBuffer(CFUInt32 pos, CFUInt32 len);
-private:
-    std::string _buffer;
-
-    CFBool _isEnableLock;
-    CFNetLock _lock;
+    CFINetBuffer(void);
+    virtual ~CFINetBuffer(void);
 };
 
 NS_CF_END
 
-#endif // CF_NET_BUFFER_H
+#endif // CF_I_NET_BUFFER_H

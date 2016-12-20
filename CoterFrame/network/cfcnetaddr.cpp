@@ -1,6 +1,7 @@
 
 #include "cfprecompiled.h"
 #include "cfcnetaddr.h"
+#include "evutil.h"
 
 NS_CF_BEGIN
 

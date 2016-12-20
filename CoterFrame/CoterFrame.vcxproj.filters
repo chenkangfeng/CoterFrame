@@ -105,5 +105,11 @@
     <ClInclude Include="interface\cfnetwork.h">
       <Filter>CoterFrame\interface</Filter>
     </ClInclude>
+    <ClInclude Include="interface\cfinetobject.h">
+      <Filter>CoterFrame\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="interface\cfinetbuffer.h">
+      <Filter>CoterFrame\interface</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

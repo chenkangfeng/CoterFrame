@@ -1,19 +1,12 @@
 
-#ifndef CF_NET_OBJECT_H
-#define CF_NET_OBJECT_H
+#ifndef CF_C_NET_OBJECT_H
+#define CF_C_NET_OBJECT_H
 
-#include "CFPrecompiled.h"
-#include <functional>
-#include "CFNetwork.h"
-#include "CFNetAddr.h"
-#include "CFNetBuffer.h"
-#include "CFNetMessage.h"
+#include "interface/cfinetobject.h"
 
 NS_CF_BEGIN
 
-typedef std::function<void(CFNetMessage&&)> CFNetReader;
-typedef std::function<void(CFNetMessage&&)> CFNetWriter;
-class CFNetObject : public CFSharePtr<CFNetObject>
+CF_COMPONENT(CFINetObject, CFCNetObject)
 {
 public:
     CFNetObject(CFNetwork* network, evutil_socket_t fd,
@@ -46,4 +39,4 @@ private:
 
 NS_CF_END
 
-#endif // CF_NET_OBJECT_H
+#endif // CF_C_NET_OBJECT_H
